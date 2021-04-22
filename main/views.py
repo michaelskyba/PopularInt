@@ -17,9 +17,9 @@ def leaderboard(request):
 def vote(request):
     return HttpResponse("Choose an integer to upvote.")
 
-def view_integer(request):
+def view_integer(request, chosen_integer):
     return HttpResponse("You're looking at the %s integer." % chosen_integer)
 
-def profile(request):
+def profile(request, user_id):
     return HttpResponse("You're looking at %s's profile." % user_id)
 
