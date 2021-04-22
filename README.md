@@ -20,3 +20,6 @@ git clone https://github.com/michaelskyba/PopularInt.git
 cd PopularInt
 python manage.py runserver
 ```
+### Disclaimer
+The commit messages are quite a mess because I'm making this project while
+learning the framework, so I don't really know what I'm doing...
