@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{ username }}'s profile</title>
+		<style>
+body { text-align: center; }
+		</style>
+	</head>
+	<h1>{{ username }}'s profile</h1>
+	<p style="margin: 0;">Date registered: {{ register }}</p>
+	<p style="margin: 0;">Password (encrypted): {{ password }}</p>
+
+	{% if integers %}
+	<p>Integers that this user likes:</p>
+	<ol style="width: 20px; margin: auto; text-align: left;">
+		{% for integer in integers %}
+		<li>{{ integer }}</li>
+		{% endfor %}
+	</ol>
+	{% else %}
+	<p>This user does not like any integers.</p>
+	{% endif %}
+</html>

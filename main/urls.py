@@ -9,5 +9,5 @@ urlpatterns = [
     path('leaderboard', views.leaderboard, name='leaderboard'),
     path('vote', views.vote, name='vote'),
     path('view_integer/<int:chosen_integer>', views.view_integer, name='view_integer'),
-    path('profile/<str:user_id>', views.profile, name='profile'),
+    path('profile/<str:username>', views.profile, name='profile'),
 ]
