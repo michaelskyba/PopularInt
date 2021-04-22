@@ -8,27 +8,19 @@ def index(request):
     return render(request, 'main/index.html', {})
 
 def register(request):
-    context = {
-            "chosen_integer": chosen_integer
-            }
+    context = {}
     return render(request, 'main/register.html', context)
 
 def login(request):
-    context = {
-            "chosen_integer": chosen_integer
-            }
+    context = {}
     return render(request, 'main/login.html', context)
 
 def leaderboard(request):
-    context = {
-            "chosen_integer": chosen_integer
-            }
+    context = {}
     return render(request, 'main/leaderboard.html', context)
 
 def vote(request):
-    context = {
-            "chosen_integer": chosen_integer
-            }
+    context = {}
     return render(request, 'main/vote.html', context)
 
 def view_integer(request, chosen_integer):
