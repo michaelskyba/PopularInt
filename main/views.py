@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render
+from django.http import Http404
 
 from .models import User
 
@@ -8,26 +8,38 @@ def index(request):
     return render(request, 'main/index.html', {})
 
 def register(request):
-    return HttpResponse("Create a free account.")
+    context = {
+            "chosen_integer": chosen_integer
+            }
+    return render(request, 'main/register.html', context)
 
 def login(request):
-    return HttpResponse("Log into your PopularInt account.")
+    context = {
+            "chosen_integer": chosen_integer
+            }
+    return render(request, 'main/login.html', context)
 
 def leaderboard(request):
-    return HttpResponse("Here are the top integers:")
+    context = {
+            "chosen_integer": chosen_integer
+            }
+    return render(request, 'main/leaderboard.html', context)
 
 def vote(request):
-    return HttpResponse("Choose an integer to upvote.")
+    context = {
+            "chosen_integer": chosen_integer
+            }
+    return render(request, 'main/vote.html', context)
 
 def view_integer(request, chosen_integer):
-    return HttpResponse("You're looking at the %s integer." % chosen_integer)
+    context = {
+            "chosen_integer": chosen_integer
+            }
+    return render(request, 'main/view_integer.html', context)
 
 def profile(request, username):
     # Make sure user exists
-    try:
-        user = User.objects.get(username_text=username)
-    except User.DoesNotExist:
-        raise Http404("No user with name '%s'." % username)
+    user = get_object_or_404(User, username_text=username)
 
     # List of integers
     integers = []
@@ -41,7 +53,6 @@ def profile(request, username):
             "password": user.password_text,
             "integers": integers
             }
-    # funny how all of them line up
 
     return render(request, 'main/profile.html', context)
 
