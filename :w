@@ -37,28 +37,23 @@ def register_submit(request):
         context = {"message": "Nice try!"}
         return render(request, 'main/register.html', context)
 
-    # Make sure user didn't inject any funky characters
     for letter in request.POST["username"]:
         if letter not in "bcdfghjklmnpqrstvwxz":
             context = {"message": "Nice try!"}
             return render(request, 'main/register.html', context)
 
-    # Makre sure user didn't make the username longer/shorter
     if len(request.POST["username"]) != 5:
         context = {"message": "Nice try!"}
         return render(request, 'main/register.html', context)
 
-    # Make sure username doesn't already exist
     try:
         user = User.objects.get(username_text=request.POST["username"])
         context = {"message": "Username taken."}
         return render(request, 'main/register.html', context)
 
     except User.DoesNotExist:
-        # Register user
         new_user = User.objects.create(username_text=request.POST["username"], password_text=request.POST["password"], registration_date=datetime.datetime.now())
         new_user.save()
-
         context = {"message": "Registered successfully."}
         return render(request, 'main/register.html', context)
 
