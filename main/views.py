@@ -26,7 +26,7 @@ def register_submit(request):
 
         if not request.POST["username"]:
             context = {"message": "You need to provide a username."}
-    except MultiValueDictKeyError:
+    except:
         context = {"message": "tf are you doing?"}
 
     return render(request, 'main/register.html', context)
