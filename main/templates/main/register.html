@@ -2,22 +2,53 @@
 <html lang="en">
 	<head>
 		<title>Register</title>
+		<style>
+			body {
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
-		<a href="./">Home</a>
-		<a href="./leaderboard">Leaderboard</a>
-		<a href="./register">Register</a>
-		<a href="./login">Log in</a>
+		<a href="{% url 'index' %}">Home</a>
+		<a href="{% url 'leaderboard' %}">Leaderboard</a>
+		<a href="{% url 'register' %}">Register</a>
+		<a href="{% url 'login' %}">Log in</a>
 
 		<h1>Register</h1>
 		<p>Creating a PopularInt account is fun, easy, and free!</p>
-		<input type="text" placeholder="Username (random only)" readonly>
-		<input type="button" value="New">
-		<br>
-		<input type="password" placeholder="Password">
-		<br>
-		<input type="password" placeholder="Confirm password">
-		<br>
-		<input type="submit" value="Register">
+
+		{% if message %}
+		<p style="color: red;">{{ message }}</p>
+		{% endif %}
+
+		<form action="{% url 'register_submit' %}" method="post">
+			{% csrf_token %}
+			<input name="username" type="text" id="username_input" placeholder="Username (random only)" readonly>
+			<input id="new_username" type="button" value="New">
+			<br>
+			<input name="password" type="password" placeholder="Password">
+			<br>
+			<input name="password_confirm" type="password" placeholder="Confirm password">
+			<br>
+			<input type="submit" value="Register">
+		</form>
+
+		<script>
+			document.getElementById("new_username").onclick = function()
+			{
+				// list of consonants (20), I excluded y
+				const consonants = "bcdfghjklmnpqrstvwxz";
+
+				let username = [];
+
+				for (let i = 0; i < 5; i++)
+				{
+					let letter_num = Math.floor(Math.random() * 20);
+					username.push(consonants[letter_num]);
+				}
+
+				document.getElementById("username_input").value = username.toString().replace(/,/g, "");
+			}
+		</script>
 	</body>
 </html>
