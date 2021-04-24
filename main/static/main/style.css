@@ -1,0 +1,22 @@
+body {
+	text-align: center;
+	margin: auto;
+}
+
+ol {
+	text-align: left;
+	width: 20px;
+	margin: auto;
+}
+
+a {
+	margin: 10px;
+}
+
+#message {
+	background-color: #ff4444;
+	color: #880000;
+	max-width: 800px;
+	margin: auto;
+	padding: 2px;
+}

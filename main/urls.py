@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),
+    path('logout', views.logout, name='logout'),
     path('leaderboard', views.leaderboard, name='leaderboard'),
     path('vote', views.vote, name='vote'),
     path('view_integer/<int:chosen_integer>', views.view_integer, name='view_integer'),

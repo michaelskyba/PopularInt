@@ -2,25 +2,32 @@
 <html lang="en">
 	<head>
 		<title>Log in</title>
-		<style>
-			body {
-				text-align: center;
-			}
-		</style>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
+		<br>
 		<a href="{% url 'index' %}">Home</a>
 		<a href="{% url 'leaderboard' %}">Leaderboard</a>
 		<a href="{% url 'register' %}">Register</a>
 		<a href="{% url 'login' %}">Log in</a>
 
-		<h1>Log in</h1>
-		<p>Signing into your PopularInt account is fun, easy, and free!</p>
-		<input type="text" placeholder="Username">
+		<form action="{% url 'login_submit' %}" method="post">
+			{% csrf_token %}
+			<h1>Log in</h1>
+			<p>Signing into your PopularInt account is fun, easy, and free!</p>
+			<input type="text" name="username" placeholder="Username">
+			<br>
+			<input type="password" name="password" placeholder="Password">
+			<br>
+			<input type="submit" value="Sign in">
+		</form>
+
+		{% if message %}
 		<br>
-		<input type="password" placeholder="Password">
-		<br>
-		<input type="submit" value="Sign in">
+		<p><span id="message">{{ message }}</span></p>
+		{% endif %}
 	</body>
 </html>
 

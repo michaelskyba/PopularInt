@@ -2,25 +2,20 @@
 <html lang="en">
 	<head>
 		<title>{{ username }}'s profile</title>
-		<style>
-			body {
-				text-align: center;
-			}
-		</style>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
-		<a href="{% url 'index' %}">Home</a>
-		<a href="{% url 'leaderboard' %}">Leaderboard</a>
-		<a href="{% url 'register' %}">Register</a>
-		<a href="{% url 'login' %}">Log in</a>
+		{% include 'recur/header.html' %}
 
 		<h1>{{ username }}'s profile</h1>
-		<p style="margin: 0;">Date registered: {{ register }}</p>
-		<p style="margin: 0;">Password (encrypted): {{ password }}</p>
+		<p>Date registered: {{ register }}</p>
+		<p>Password (encrypted): {{ password }}</p>
 
 		{% if integers %}
 		<p>Integers that this user likes:</p>
-		<ol style="width: 20px; margin: auto; text-align: left;">
+		<ol>
 			{% for integer in integers %}
 			<li>{{ integer }}</li>
 			{% endfor %}

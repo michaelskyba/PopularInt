@@ -1,0 +1,12 @@
+<br>
+<a href="{% url 'index' %}">Home</a>
+<a href="{% url 'leaderboard' %}">Leaderboard</a>
+
+{% if username %}
+<a href="{% url 'vote' %}">Vote</a>
+<a href="{% url 'profile' username %}">{{ username }}</a>
+<a href="{% url 'logout' %}">Log out</a>
+{% else %}
+<a href="{% url 'register' %}">Register</a>
+<a href="{% url 'login' %}">Log in</a>
+{% endif %}

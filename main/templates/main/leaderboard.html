@@ -2,17 +2,12 @@
 <html lang="en">
 	<head>
 		<title>Leaderboard</title>
-		<style>
-			body {
-				text-align: center;
-			}
-		</style>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
-		<a href="{% url 'index' %}">Home</a>
-		<a href="{% url 'leaderboard' %}">Leaderboard</a>
-		<a href="{% url 'register' %}">Register</a>
-		<a href="{% url 'login' %}">Log in</a>
+		{% include 'recur/header.html' %}
 
 		<h1>Leaderboard</h1>
 		<p>Which integers are the most popular?</p>

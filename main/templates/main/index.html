@@ -2,21 +2,19 @@
 <html lang="en">
 	<head>
 		<title>PopularInt</title>
-		<style>
-			body {
-				text-align: center;
-			}
-		</style>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
-		<a href="{% url 'index' %}">Home</a>
-		<a href="{% url 'leaderboard' %}">Leaderboard</a>
-		<a href="{% url 'register' %}">Register</a>
-		<a href="{% url 'login' %}">Log in</a>
+		{% include 'recur/header.html' %}
 
 		<h1>Welcome to PopularInt</h1>
 		<p>Share your preferred integers with the world!</p>
+
+		{% if message %}
+		<br>
+		<p><span id="message">{{ message }}</span></p>
+		{% endif %}
 	</body>
 </html>
-
-

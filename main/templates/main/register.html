@@ -2,13 +2,12 @@
 <html lang="en">
 	<head>
 		<title>Register</title>
-		<style>
-			body {
-				text-align: center;
-			}
-		</style>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
+		<br>
 		<a href="{% url 'index' %}">Home</a>
 		<a href="{% url 'leaderboard' %}">Leaderboard</a>
 		<a href="{% url 'register' %}">Register</a>
@@ -16,10 +15,6 @@
 
 		<h1>Register</h1>
 		<p>Creating a PopularInt account is fun, easy, and free!</p>
-
-		{% if message %}
-		<p style="color: red;">{{ message }}</p>
-		{% endif %}
 
 		<form action="{% url 'register_submit' %}" method="post">
 			{% csrf_token %}
@@ -32,6 +27,11 @@
 			<br>
 			<input type="submit" value="Register">
 		</form>
+
+		{% if message %}
+		<br>
+		<p><span id="message">{{ message }}</span></p>
+		{% endif %}
 
 		<script>
 			document.getElementById("new_username").onclick = function()
