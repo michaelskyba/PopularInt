@@ -1,16 +1,16 @@
 <div style="background-color: #CCAA81; display: grid; grid-template-columns: 1fr 1fr;">
 	<div style="justify-self: start; padding: 20px;">
-		<a style="color: #5B4C3A;" href="{% url 'index' %}">Home</a>
-		<a style="color: #5B4C3A;" href="{% url 'leaderboard' %}">Leaderboard</a>
+		<a href="{% url 'index' %}">Home</a>
+		<a href="{% url 'leaderboard' %}">Leaderboard</a>
 	</div>
 	<div style="justify-self: end; padding: 20px;">
 		{% if username %}
-		<a style="color: #5B4C3A;" href="{% url 'vote' %}">Vote</a>
-		<a style="color: #5B4C3A;" href="{% url 'profile' username %}">{{ username }}</a>
-		<a style="color: #5B4C3A;" href="{% url 'logout' %}">Log out</a>
+		<a href="{% url 'vote' %}">Vote</a>
+		<a href="{% url 'profile' username %}">{{ username }}</a>
+		<a href="{% url 'logout' %}">Log out</a>
 		{% else %}
-		<a style="color: #5B4C3A;" href="{% url 'register' %}">Register</a>
-		<a style="color: #5B4C3A;" href="{% url 'login' %}">Log in</a>
+		<a href="{% url 'register' %}">Register</a>
+		<a href="{% url 'login' %}">Log in</a>
 		{% endif %}
 	</div>
 </div>

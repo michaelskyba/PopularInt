@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{{ integer }}</title>
+
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'main/style.css' %}">
+	</head>
+	<body>
+		{% include 'recur/header.html' %}
+
+		<h1>{{ integer }}</h1>
+		<p>Votes: {{ votes }}</p>
+
+		{% if users %}
+		<p>Users that have voted for this integer:</p>
+		<ol>
+			{% for user in users %}
+			<li><a href="{% url 'profile' user %}">{{ user }}</a></li>
+			{% endfor %}
+		</ol>
+		{% else %}
+		<p>Nobody likes this integer, or it's too long to exist in the database.</p>
+		{% endif %}
+	</body>
+</html>

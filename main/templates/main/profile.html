@@ -17,7 +17,7 @@
 		<p>Integers that this user likes:</p>
 		<ol>
 			{% for integer in integers %}
-			<li>{{ integer }}</li>
+			<li><a href="{% url 'view_integer' integer %}">{{ integer }}</a></li>
 			{% endfor %}
 		</ol>
 		{% else %}

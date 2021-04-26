@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 from django.urls import reverse
+from django.db.models import Count
 
 from .models import User, Integer
 import datetime
@@ -56,6 +57,9 @@ def leaderboard(request):
     except KeyError:
         context = {}
 
+    # Sort integers
+    context["integers"] = Integer.objects.all().annotate(num_votes=Count('vote')).order_by('-num_votes')
+
     return render(request, 'main/leaderboard.html', context)
 
 # Vote page
@@ -69,15 +73,29 @@ def vote(request):
 
 # View an integer
 def view_integer(request, chosen_integer):
+    context = {"integer": chosen_integer}
+
+    # Check if user is signed in
     try:
-        username = request.session['username']
+        context["username"] = request.session['username']
     except KeyError:
-        context = {}
+        pass
+
+    # See if the integer exists
+    try:
+        db_integer = Integer.objects.get(value_chosen=int(chosen_integer))
+    except:
+        pass
     else:
-        context = {
-                'username': username,
-                'chosen_integer': chosen_integer
-                }
+        # Get list of users that voted for this integer
+        votes = db_integer.vote_set.all()
+        context_users = []
+        for vote in votes:
+            context_users.append(vote.user)
+        context["users"] = context_users
+
+        # Get number
+        context["votes"] = len(votes)
 
     return render(request, 'main/view_integer.html', context)
 

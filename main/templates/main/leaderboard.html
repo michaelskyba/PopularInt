@@ -11,5 +11,14 @@
 
 		<h1>Leaderboard</h1>
 		<p>Which integers are the most popular?</p>
+
+		<div style="margin-top: 45px;">
+			<ol>
+				{% for integer in integers %}
+				<li><a href="{% url 'view_integer' integer %}">{{ integer }} - {{ integer.vote_set.all|length }} votes</a></li>
+				{% endfor %}
+			</ol>
+		</div>
+
 	</body>
 </html>

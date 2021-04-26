@@ -5,17 +5,18 @@ body {
 
 h1 {
 	color: #5B4C3A;
-	margin-top: 100px;
+	margin-top: 150px;
 }
 
 ol {
 	text-align: left;
-	width: 20px;
+	display: table;
 	margin: auto;
 }
 
 a {
 	margin: 10px;
+	color: #5B4C3A;
 }
 
 #message {
