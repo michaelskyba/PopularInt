@@ -7,11 +7,7 @@
 		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
-		<br>
-		<a href="{% url 'index' %}">Home</a>
-		<a href="{% url 'leaderboard' %}">Leaderboard</a>
-		<a href="{% url 'register' %}">Register</a>
-		<a href="{% url 'login' %}">Log in</a>
+		{% include 'recur/header.html' %}
 
 		<form action="{% url 'login_submit' %}" method="post">
 			{% csrf_token %}

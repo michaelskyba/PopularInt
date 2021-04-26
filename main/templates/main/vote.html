@@ -7,12 +7,7 @@
 		<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	</head>
 	<body>
-		<br>
-		<a href="{% url 'index' %}">Home</a>
-		<a href="{% url 'leaderboard' %}">Leaderboard</a>
-		<a href="{% url 'vote' %}">Vote</a>
-		<a href="{% url 'profile' username %}">{{ username }}</a>
-		<a href="{% url 'logout' %}">Log out</a>
+		{% include 'recur/header.html' %}
 
 		<form action="{% url 'vote_submit' %}" method="post">
 			{% csrf_token %}

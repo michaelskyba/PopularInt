@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 from django.urls import reverse
 
-from .models import User
+from .models import User, Integer
 import datetime
 
 # GET
@@ -201,7 +201,30 @@ def vote_submit(request):
     except:
         return render(request, 'main/vote.html', {"message": "Nice try.", "username": request.session["username"]})
 
-    print(type(request.POST["integer"]))
-    return render(request, 'main/vote.html', {"message": "success", "username": request.session["username"]})
+    # Make sure user gives an integer
+    try:
+        vote = int(vote)
+    except:
+        return render(request, 'main/vote.html', {"message": "Nice \"integer\".", "username": request.session["username"]})
 
+    # See if there exists an "Integer" for this integer
+    # If not, create one
+    try:
+        integer_object = Integer.objects.get(value_chosen=vote)
+    except:
+        integer_object = Integer.objects.create(value_chosen=vote)
+        integer_object.save()
+
+    user = User.objects.get(username_text=request.session["username"])
+
+    # Make sure user hasn't already voted for this integer
+    try:
+        existing_vote = Integer.objects.get(value_chosen=vote).vote_set.get(user=user)
+        return render(request, 'main/vote.html', {"message": "You've already voted for this integer...", "username": request.session["username"]})
+    except:
+        # Add the vote
+        integer_object.vote_set.create(user=user)
+
+    # Return template
+    return render(request, 'main/vote.html', {"message": "success", "username": request.session["username"]})
 

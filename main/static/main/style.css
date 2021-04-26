@@ -3,6 +3,11 @@ body {
 	margin: auto;
 }
 
+h1 {
+	color: #5B4C3A;
+	margin-top: 100px;
+}
+
 ol {
 	text-align: left;
 	width: 20px;
